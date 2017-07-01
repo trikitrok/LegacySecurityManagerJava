@@ -1,4 +1,5 @@
 class UserCreator {
+    private static final int MINIMUM_PASSWORD_LEGTH = 8;
     private Console console;
 
     public UserCreator(Console console) {
@@ -27,7 +28,7 @@ class UserCreator {
             return;
         }
 
-        if (password.length() < 8) {
+        if (password.length() < MINIMUM_PASSWORD_LEGTH) {
             print("Password must be at least 8 characters in length");
             return;
         }
