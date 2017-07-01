@@ -1,14 +1,10 @@
 import org.junit.Before;
 import org.junit.Test;
 
-import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 
-public class UserCreationThroughConsoleTest {
+public class UserCreationTest {
 
     private UserDataRetrieval userDataRetrieval;
     private Reporter reporter;
