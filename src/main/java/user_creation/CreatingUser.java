@@ -2,6 +2,8 @@ package user_creation;
 
 public class CreatingUser {
     private static final int MINIMUM_PASSWORD_LENGTH = 8;
+    private static final String NOT_MATCHING_PASSWORDS_ERROR = "The passwords don't match";
+    private static final String TOO_SHORT_PASSWORD_ERROR = "Password must be at least 8 characters in length";
     private final EncryptionAlgorithm encryptionAlgorithm;
     private UserDataRetrieval userDataRetrieval;
     private Reporter reporter;
@@ -20,12 +22,12 @@ public class CreatingUser {
         UserData userData = userDataRetrieval.invoke();
 
         if (!userData.passwordsMatch()) {
-            reporter.reportError("The passwords don't match");
+            reporter.reportError(NOT_MATCHING_PASSWORDS_ERROR);
             return;
         }
 
         if (isPasswordTooShort(userData)) {
-            reporter.reportError("Password must be at least 8 characters in length");
+            reporter.reportError(TOO_SHORT_PASSWORD_ERROR);
             return;
         }
 
