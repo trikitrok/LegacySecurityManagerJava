@@ -21,9 +21,18 @@ class UserCreator {
             return;
         }
 
-        // Encrypt the password (just reverse it, should be secure)
-        String encryptedPassword = new StringBuilder(userData.password()).reverse().toString();
+        String encryptedPassword = new ReverseEncryption().encrypt(userData.password());
 
         reporter.reportSuccessCreatingUser(userData, encryptedPassword);
+    }
+
+    private class ReverseEncryption {
+
+        public ReverseEncryption() {
+        }
+
+        public String encrypt(String password) {
+            return new StringBuilder(password).reverse().toString();
+        }
     }
 }
