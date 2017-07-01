@@ -7,48 +7,47 @@ class UserCreator {
     }
 
     public void createUser() {
-        String username = null;
-        String fullName = null;
-        String password = null;
-        String confirmPassword = null;
-
-        print("Enter a username");
-        username = readLine();
-        print("Enter your full name");
-        fullName = readLine();
-        print("Enter your password");
-        password = readLine();
-        print("Re-enter your password");
-        confirmPassword = readLine();
-
-        UserData userData = new UserData(username, fullName, password, confirmPassword);
+        UserData userData = new ConsoleUserDataRetrieval(console).invoke();
 
         if (!userData.passwordsMatch()) {
-            print("The passwords don't match");
+            console.printLine("The passwords don't match");
             return;
         }
 
         if (userData.passwordLength() < MINIMUM_PASSWORD_LEGTH) {
-            print("Password must be at least 8 characters in length");
+            console.printLine("Password must be at least 8 characters in length");
             return;
         }
 
         // Encrypt the password (just reverse it, should be secure)
         String encryptedPassword = new StringBuilder(userData.password()).reverse().toString();
 
-        print(String.format(
-            "Saving Details for User (%s, %s, %s)\n",
-            userData.username(),
-            userData.fullName(),
-            encryptedPassword));
+        console.printLine(
+            String.format(
+                "Saving Details for User (%s, %s, %s)\n",
+                userData.username(),
+                userData.fullName(),
+                encryptedPassword));
     }
 
-    protected String readLine() {
-        return console.readLine();
-    }
+    private class ConsoleUserDataRetrieval {
+        private final Console console;
 
-    protected void print(String line) {
-        console.printLine(line);
-    }
+        public ConsoleUserDataRetrieval(Console console) {
+            this.console = console;
+        }
 
+        public UserData invoke() {
+            console.printLine("Enter a username");
+            String username = console.readLine();
+            console.printLine("Enter your full name");
+            String fullName = console.readLine();
+            console.printLine("Enter your password");
+            String password = console.readLine();
+            console.printLine("Re-enter your password");
+            String confirmPassword = console.readLine();
+
+            return new UserData(username, fullName, password, confirmPassword);
+        }
+    }
 }
