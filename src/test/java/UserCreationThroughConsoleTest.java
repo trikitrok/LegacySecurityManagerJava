@@ -23,6 +23,19 @@ public class UserCreationThroughConsoleTest {
             is("Saving Details for User (pepe, pepe lopes, 87654321)\n"));
     }
 
+    @Test
+    public void creating_user_using_a_password_that_is_to_short() {
+        FakeUserCreator userCreator = new FakeUserCreator(
+            "pepe", "pepe lopes", "1234567", "1234567"
+        );
+
+        userCreator.createUser();
+
+        assertThat(
+            userCreator.lastPrintedLine(),
+            is("Password must be at least 8 characters in length"));
+    }
+
     private class FakeUserCreator extends UserCreator {
         private final List<String> userInputs;
         private int linesReadNumber;
