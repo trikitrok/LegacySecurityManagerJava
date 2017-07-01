@@ -30,4 +30,37 @@ public class UserData {
     public String username() {
         return username;
     }
+
+    @Override
+    public String toString() {
+        return "UserData{" +
+            "username='" + username + '\'' +
+            ", fullName='" + fullName + '\'' +
+            ", password='" + password + '\'' +
+            ", confirmPassword='" + confirmPassword + '\'' +
+            '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof UserData)) return false;
+
+        UserData userData = (UserData) o;
+
+        if (username != null ? !username.equals(userData.username) : userData.username != null) return false;
+        if (fullName != null ? !fullName.equals(userData.fullName) : userData.fullName != null) return false;
+        if (password != null ? !password.equals(userData.password) : userData.password != null) return false;
+        return confirmPassword != null ? confirmPassword.equals(userData.confirmPassword) : userData.confirmPassword == null;
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result = username != null ? username.hashCode() : 0;
+        result = 31 * result + (fullName != null ? fullName.hashCode() : 0);
+        result = 31 * result + (password != null ? password.hashCode() : 0);
+        result = 31 * result + (confirmPassword != null ? confirmPassword.hashCode() : 0);
+        return result;
+    }
 }
