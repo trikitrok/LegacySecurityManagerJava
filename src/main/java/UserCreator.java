@@ -20,7 +20,9 @@ class UserCreator {
         print("Re-enter your password");
         confirmPassword = readLine();
 
-        if (!password.equals(confirmPassword)) {
+        UserData userData = new UserData(username, fullName, password, confirmPassword);
+
+        if (!userData.passwordsMatch()) {
             print("The passwords don't match");
             return;
         }
