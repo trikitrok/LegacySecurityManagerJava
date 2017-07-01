@@ -24,12 +24,6 @@ class UserCreator {
         // Encrypt the password (just reverse it, should be secure)
         String encryptedPassword = new StringBuilder(userData.password()).reverse().toString();
 
-        console.printLine(
-            String.format(
-                "Saving Details for User (%s, %s, %s)\n",
-                userData.username(),
-                userData.fullName(),
-                encryptedPassword));
+        new ConsoleSuccessReport(console).reportSuccessCreatingUser(userData, encryptedPassword);
     }
-
 }
