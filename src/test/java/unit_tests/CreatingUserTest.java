@@ -7,7 +7,7 @@ import user_creation.*;
 import static org.mockito.Mockito.*;
 
 
-public class UserCreationTest {
+public class CreatingUserTest {
 
     private UserDataRetrieval userDataRetrieval;
     private Reporter reporter;
