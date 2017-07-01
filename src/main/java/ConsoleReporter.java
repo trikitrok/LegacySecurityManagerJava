@@ -1,7 +1,7 @@
-public class ConsoleSuccessReport {
+public class ConsoleReporter implements Reporter {
     private Console console;
 
-    public ConsoleSuccessReport(Console console) {
+    public ConsoleReporter(Console console) {
         this.console = console;
     }
 

@@ -2,12 +2,12 @@ class UserCreator {
     private static final int MINIMUM_PASSWORD_LENGTH = 8;
     private Console console;
     private UserDataRetrieval userDataRetrieval;
-    private ConsoleSuccessReport successReport;
+    private Reporter reporter;
 
-    public UserCreator(Console console, UserDataRetrieval userDataRetrieval) {
+    public UserCreator(Console console, UserDataRetrieval userDataRetrieval, Reporter reporter) {
         this.console = console;
         this.userDataRetrieval = userDataRetrieval;
-        this.successReport = new ConsoleSuccessReport(console);
+        this.reporter = reporter;
     }
 
     public void createUser() {
@@ -26,6 +26,6 @@ class UserCreator {
         // Encrypt the password (just reverse it, should be secure)
         String encryptedPassword = new StringBuilder(userData.password()).reverse().toString();
 
-        successReport.reportSuccessCreatingUser(userData, encryptedPassword);
+        reporter.reportSuccessCreatingUser(userData, encryptedPassword);
     }
 }
