@@ -1,7 +1,5 @@
 package user_creation;
 
-import user_creation.Console;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;

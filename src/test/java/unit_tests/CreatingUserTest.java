@@ -31,7 +31,9 @@ public class CreatingUserTest {
 
         creatingUser.execute();
 
-        verify(reporter).reportSuccessCreatingUser(userData, encryptedPassword);
+        verify(reporter).reportSuccessCreatingUser(
+            "Saving Details for User (pepe, pepe lopes, 87654321)\n"
+        );
     }
 
     @Test

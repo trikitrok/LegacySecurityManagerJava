@@ -7,13 +7,8 @@ public class ConsoleReporter implements Reporter {
         this.console = console;
     }
 
-    public void reportSuccessCreatingUser(UserData userData, String encryptedPassword) {
-        console.printLine(
-            String.format(
-                "Saving Details for User (%s, %s, %s)\n",
-                userData.username(),
-                userData.fullName(),
-                encryptedPassword));
+    public void reportSuccessCreatingUser(String text) {
+        console.printLine(text);
     }
 
     @Override

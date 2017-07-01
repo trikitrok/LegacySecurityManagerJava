@@ -6,7 +6,11 @@ public class CreatingUser {
     private UserDataRetrieval userDataRetrieval;
     private Reporter reporter;
 
-    public CreatingUser(UserDataRetrieval userDataRetrieval, Reporter reporter, EncryptionAlgorithm encryptionAlgorithm) {
+    public CreatingUser(
+        UserDataRetrieval userDataRetrieval,
+        Reporter reporter,
+        EncryptionAlgorithm encryptionAlgorithm
+    ) {
         this.userDataRetrieval = userDataRetrieval;
         this.reporter = reporter;
         this.encryptionAlgorithm = encryptionAlgorithm;
@@ -20,13 +24,23 @@ public class CreatingUser {
             return;
         }
 
-        if (userData.passwordLength() < MINIMUM_PASSWORD_LENGTH) {
+        if (isPasswordTooShort(userData)) {
             reporter.reportError("Password must be at least 8 characters in length");
             return;
         }
 
         String encryptedPassword = encryptionAlgorithm.encrypt(userData.password());
 
-        reporter.reportSuccessCreatingUser(userData, encryptedPassword);
+        reporter.reportSuccessCreatingUser(
+            composeMessage(userData, encryptedPassword)
+        );
+    }
+
+    private boolean isPasswordTooShort(UserData userData) {
+        return userData.passwordLength() < MINIMUM_PASSWORD_LENGTH;
+    }
+
+    private String composeMessage(UserData userData, String encryptedPassword) {
+        return new UserCreationSuccessMessage(userData, encryptedPassword).compose();
     }
 }

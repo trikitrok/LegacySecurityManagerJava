@@ -1,6 +1,5 @@
 package unit_tests;
 
-import org.hamcrest.CoreMatchers;
 import org.junit.Test;
 import user_creation.Console;
 import user_creation.ConsoleUserDataRetrieval;
