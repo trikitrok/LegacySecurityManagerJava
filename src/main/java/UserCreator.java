@@ -1,6 +1,4 @@
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
 
 class UserCreator {
     public void createUser() {
@@ -42,11 +40,11 @@ class UserCreator {
     }
 
     protected String readLine() throws IOException {
-        BufferedReader buffer = new BufferedReader(new InputStreamReader(System.in));
-        return buffer.readLine();
+        return new RealConsole().readLine();
     }
 
     protected void print(String line) {
-        System.out.println(line);
+        new RealConsole().printLine(line);
     }
+
 }
