@@ -1,10 +1,6 @@
 class UserCreator {
     private Console console;
 
-    public UserCreator() {
-
-    }
-
     public UserCreator(Console console) {
         this.console = console;
     }

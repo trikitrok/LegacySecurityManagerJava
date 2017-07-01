@@ -40,41 +40,16 @@ public class UserCreationThroughConsoleTest {
 
     @Test
     public void creating_user_using_passwords_that_do_not_match() {
-        FakeUserCreator userCreator = new FakeUserCreator(
+        FakeConsole console = new FakeConsole(
             "pepe", "pepe lopes", "1234567", "xkofjsofis"
         );
+        UserCreator userCreator = new UserCreator(console);
 
         userCreator.createUser();
 
         assertThat(
-            userCreator.lastPrintedLine(),
+            console.lastPrintedLine(),
             is("The passwords don't match"));
-    }
-
-    private class FakeUserCreator extends UserCreator {
-        private final List<String> userInputs;
-        private int linesReadNumber;
-        private List<String> printedLines;
-
-        public FakeUserCreator(String ... userInputs) {
-            printedLines = new ArrayList<>();
-            this.userInputs = Arrays.asList(userInputs);
-            linesReadNumber = 0;
-        }
-
-        protected String readLine()  {
-            String line = userInputs.get(linesReadNumber);
-            linesReadNumber++;
-            return line;
-        }
-
-        protected void print(String line) {
-            printedLines.add(line);
-        }
-
-        public String lastPrintedLine() {
-            return printedLines.get(printedLines.size() - 1);
-        }
     }
 
     private class FakeConsole implements Console {
