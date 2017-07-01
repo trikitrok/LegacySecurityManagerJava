@@ -3,12 +3,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 
 class UserCreator {
-
-    private BufferedReader buffer;
-
     public void createUser() {
-        buffer = new BufferedReader(new InputStreamReader(System.in));
-
         String username = null;
         String fullName = null;
         String password = null;
@@ -47,6 +42,7 @@ class UserCreator {
     }
 
     protected String readLine() throws IOException {
+        BufferedReader buffer = new BufferedReader(new InputStreamReader(System.in));
         return buffer.readLine();
     }
 
