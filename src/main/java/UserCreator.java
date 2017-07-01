@@ -3,10 +3,6 @@ class UserCreator {
     private Console console;
     private UserDataRetrieval userDataRetrieval;
 
-    public UserCreator(Console console) {
-        this(console, new ConsoleUserDataRetrieval(console));
-    }
-
     public UserCreator(Console console, UserDataRetrieval userDataRetrieval) {
         this.console = console;
         this.userDataRetrieval = userDataRetrieval;
