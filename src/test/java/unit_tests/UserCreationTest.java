@@ -55,5 +55,4 @@ public class UserCreationTest {
 
         verify(reporter).reportError("The passwords don't match");
     }
-
 }
