@@ -1,18 +1,18 @@
 package user_creation;
 
-public class UserCreator {
+public class CreatingUser {
     private static final int MINIMUM_PASSWORD_LENGTH = 8;
     private final EncryptionAlgorithm encryptionAlgorithm;
     private UserDataRetrieval userDataRetrieval;
     private Reporter reporter;
 
-    public UserCreator(UserDataRetrieval userDataRetrieval, Reporter reporter, EncryptionAlgorithm encryptionAlgorithm) {
+    public CreatingUser(UserDataRetrieval userDataRetrieval, Reporter reporter, EncryptionAlgorithm encryptionAlgorithm) {
         this.userDataRetrieval = userDataRetrieval;
         this.reporter = reporter;
         this.encryptionAlgorithm = encryptionAlgorithm;
     }
 
-    public void createUser() {
+    public void execute() {
         UserData userData = userDataRetrieval.invoke();
 
         if (!userData.passwordsMatch()) {

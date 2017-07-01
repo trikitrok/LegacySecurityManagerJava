@@ -11,7 +11,7 @@ import static org.mockito.Mockito.when;
 public class CreatingUserThroughConsoleTest {
     private UserDataRetrieval userDataRetrieval;
     private Reporter reporter;
-    private UserCreator userCreator;
+    private CreatingUser userCreator;
     private Console console;
 
     @Before
@@ -19,7 +19,7 @@ public class CreatingUserThroughConsoleTest {
         console = mock(Console.class);
         userDataRetrieval = new ConsoleUserDataRetrieval(console);
         reporter = new ConsoleReporter(console);
-        userCreator = new UserCreator(userDataRetrieval, reporter, new ReverseEncryption());
+        userCreator = new CreatingUser(userDataRetrieval, reporter, new ReverseEncryption());
     }
 
     @Test
@@ -29,7 +29,7 @@ public class CreatingUserThroughConsoleTest {
             "pepe", "pepe lopes", password, password
         );
 
-        userCreator.createUser();
+        userCreator.execute();
 
         verify(console).printLine("Enter a username");
         verify(console).printLine("Enter your full name");
@@ -44,7 +44,7 @@ public class CreatingUserThroughConsoleTest {
             "pepe", "pepe lopes", "1234567", "1234567"
         );
 
-        userCreator.createUser();
+        userCreator.execute();
 
         verify(console).printLine("Enter a username");
         verify(console).printLine("Enter your full name");
@@ -59,7 +59,7 @@ public class CreatingUserThroughConsoleTest {
             "pepe", "pepe lopes", "1234567", "xkofjsofis"
         );
 
-        userCreator.createUser();
+        userCreator.execute();
 
         verify(console).printLine("Enter a username");
         verify(console).printLine("Enter your full name");

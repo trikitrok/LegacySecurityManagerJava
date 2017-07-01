@@ -11,13 +11,13 @@ public class CreatingUserTest {
 
     private UserDataRetrieval userDataRetrieval;
     private Reporter reporter;
-    private UserCreator userCreator;
+    private CreatingUser creatingUser;
 
     @Before
     public void setUp() throws Exception {
         userDataRetrieval = mock(UserDataRetrieval.class);
         reporter = mock(Reporter.class);
-        userCreator = new UserCreator(userDataRetrieval, reporter, new ReverseEncryption());
+        creatingUser = new CreatingUser(userDataRetrieval, reporter, new ReverseEncryption());
     }
 
     @Test
@@ -29,7 +29,7 @@ public class CreatingUserTest {
             userData
         );
 
-        userCreator.createUser();
+        creatingUser.execute();
 
         verify(reporter).reportSuccessCreatingUser(userData, encryptedPassword);
     }
@@ -40,7 +40,7 @@ public class CreatingUserTest {
             new UserData("pepe", "pepe lopes", "1234567", "1234567")
         );
 
-        userCreator.createUser();
+        creatingUser.execute();
 
         verify(reporter).reportError("Password must be at least 8 characters in length");
     }
@@ -51,7 +51,7 @@ public class CreatingUserTest {
             new UserData("pepe", "pepe lopes", "1234567", "xkofjsofis")
         );
 
-        userCreator.createUser();
+        creatingUser.execute();
 
         verify(reporter).reportError("The passwords don't match");
     }
