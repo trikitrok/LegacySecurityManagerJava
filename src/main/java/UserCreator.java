@@ -1,13 +1,13 @@
 class UserCreator {
     private static final int MINIMUM_PASSWORD_LENGTH = 8;
-    private final ReverseEncryption reverseEncryption;
+    private final EncryptionAlgorithm encryptionAlgorithm;
     private UserDataRetrieval userDataRetrieval;
     private Reporter reporter;
 
-    public UserCreator(UserDataRetrieval userDataRetrieval, Reporter reporter) {
+    public UserCreator(UserDataRetrieval userDataRetrieval, Reporter reporter, EncryptionAlgorithm encryptionAlgorithm) {
         this.userDataRetrieval = userDataRetrieval;
         this.reporter = reporter;
-        this.reverseEncryption = new ReverseEncryption();
+        this.encryptionAlgorithm = encryptionAlgorithm;
     }
 
     public void createUser() {
@@ -23,18 +23,8 @@ class UserCreator {
             return;
         }
 
-        String encryptedPassword = reverseEncryption.encrypt(userData.password());
+        String encryptedPassword = encryptionAlgorithm.encrypt(userData.password());
 
         reporter.reportSuccessCreatingUser(userData, encryptedPassword);
-    }
-
-    private class ReverseEncryption {
-
-        public ReverseEncryption() {
-        }
-
-        public String encrypt(String password) {
-            return new StringBuilder(password).reverse().toString();
-        }
     }
 }

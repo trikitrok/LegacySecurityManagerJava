@@ -14,7 +14,10 @@ public class UserCreationThroughConsoleTest {
             "pepe", "pepe lopes", "12345678", "12345678"
         );
         UserDataRetrieval userDataRetrieval = mock(UserDataRetrieval.class);
-        UserCreator userCreator = new UserCreator(userDataRetrieval, new ConsoleReporter(console));
+        UserCreator userCreator = new UserCreator(
+            userDataRetrieval,
+            new ConsoleReporter(console),
+            new ReverseEncryption());
         when(userDataRetrieval.invoke()).thenReturn(
             new UserData("pepe", "pepe lopes", "12345678", "12345678")
         );
@@ -32,7 +35,10 @@ public class UserCreationThroughConsoleTest {
             "pepe", "pepe lopes", "1234567", "1234567"
         );
         UserDataRetrieval userDataRetrieval = mock(UserDataRetrieval.class);
-        UserCreator userCreator = new UserCreator(userDataRetrieval, new ConsoleReporter(console));
+        UserCreator userCreator = new UserCreator(
+            userDataRetrieval,
+            new ConsoleReporter(console),
+            new ReverseEncryption());
         when(userDataRetrieval.invoke()).thenReturn(
             new UserData("pepe", "pepe lopes", "1234567", "1234567")
         );
@@ -50,7 +56,10 @@ public class UserCreationThroughConsoleTest {
             "pepe", "pepe lopes", "1234567", "xkofjsofis"
         );
         UserDataRetrieval userDataRetrieval = mock(UserDataRetrieval.class);
-        UserCreator userCreator = new UserCreator(userDataRetrieval, new ConsoleReporter(console));
+        UserCreator userCreator = new UserCreator(
+            userDataRetrieval,
+            new ConsoleReporter(console),
+            new ReverseEncryption());
         when(userDataRetrieval.invoke()).thenReturn(
             new UserData("pepe", "pepe lopes", "1234567", "xkofjsofis")
         );

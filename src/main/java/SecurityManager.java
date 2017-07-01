@@ -3,7 +3,9 @@ public class SecurityManager {
         Console console = new RealConsole();
         new UserCreator(
             new ConsoleUserDataRetrieval(console),
-            new ConsoleReporter(console)).createUser();
+            new ConsoleReporter(console),
+            new ReverseEncryption()
+        ).createUser();
     }
 
 }
