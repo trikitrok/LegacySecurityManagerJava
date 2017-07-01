@@ -36,6 +36,19 @@ public class UserCreationThroughConsoleTest {
             is("Password must be at least 8 characters in length"));
     }
 
+    @Test
+    public void creating_user_using_passwords_that_do_not_match() {
+        FakeUserCreator userCreator = new FakeUserCreator(
+            "pepe", "pepe lopes", "1234567", "xkofjsofis"
+        );
+
+        userCreator.createUser();
+
+        assertThat(
+            userCreator.lastPrintedLine(),
+            is("The passwords don't match"));
+    }
+
     private class FakeUserCreator extends UserCreator {
         private final List<String> userInputs;
         private int linesReadNumber;
