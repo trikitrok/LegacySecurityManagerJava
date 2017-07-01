@@ -1,23 +1,18 @@
-import java.io.IOException;
-
 class UserCreator {
     public void createUser() {
         String username = null;
         String fullName = null;
         String password = null;
         String confirmPassword = null;
-        try {
-            print("Enter a username");
-            username = readLine();
-            print("Enter your full name");
-            fullName = readLine();
-            print("Enter your password");
-            password = readLine();
-            print("Re-enter your password");
-            confirmPassword = readLine();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+
+        print("Enter a username");
+        username = readLine();
+        print("Enter your full name");
+        fullName = readLine();
+        print("Enter your password");
+        password = readLine();
+        print("Re-enter your password");
+        confirmPassword = readLine();
 
         if (!password.equals(confirmPassword)) {
             print("The passwords don't match");
@@ -33,13 +28,13 @@ class UserCreator {
         String encryptedPassword = new StringBuilder(password).reverse().toString();
 
         print(String.format(
-        "Saving Details for User (%s, %s, %s)\n",
-        username,
-        fullName,
-        encryptedPassword));
+            "Saving Details for User (%s, %s, %s)\n",
+            username,
+            fullName,
+            encryptedPassword));
     }
 
-    protected String readLine() throws IOException {
+    protected String readLine() {
         return new RealConsole().readLine();
     }
 

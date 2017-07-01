@@ -1,6 +1,5 @@
 import org.junit.Test;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -60,7 +59,7 @@ public class UserCreationThroughConsoleTest {
             linesReadNumber = 0;
         }
 
-        protected String readLine() throws IOException {
+        protected String readLine()  {
             String line = userInputs.get(linesReadNumber);
             linesReadNumber++;
             return line;

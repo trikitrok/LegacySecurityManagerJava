@@ -3,9 +3,14 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 
 class RealConsole {
-    public String readLine() throws IOException {
-        BufferedReader buffer = new BufferedReader(new InputStreamReader(System.in));
-        return buffer.readLine();
+    public String readLine() {
+        try {
+            BufferedReader buffer = new BufferedReader(new InputStreamReader(System.in));
+            return buffer.readLine();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
     public void printLine(String line) {
