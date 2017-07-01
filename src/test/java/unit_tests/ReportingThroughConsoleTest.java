@@ -22,9 +22,9 @@ public class ReportingThroughConsoleTest {
 
     @Test
     public void creating_user_with_valid_password() {
-        String password = "12345678";
+        String notUsed = "";
         String encryptedPassword = "87654321";
-        UserData userData = new UserData("pepe", "pepe lopes", password, password);
+        UserData userData = new UserData("pepe", "pepe lopes", notUsed, notUsed);
 
         reporter.reportSuccessCreatingUser(userData, encryptedPassword);
 
