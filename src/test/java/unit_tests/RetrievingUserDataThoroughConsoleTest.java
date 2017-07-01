@@ -1,4 +1,10 @@
+package unit_tests;
+
+import org.hamcrest.CoreMatchers;
 import org.junit.Test;
+import user_creation.Console;
+import user_creation.ConsoleUserDataRetrieval;
+import user_creation.UserData;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -17,7 +23,7 @@ public class RetrievingUserDataThoroughConsoleTest {
 
         UserData userData = userDataRetrieval.invoke();
 
-        assertThat(userData, is(new UserData("pepe", "pepe lopes", "12345678", "12345678")));
+        assertThat(userData, CoreMatchers.is(new UserData("pepe", "pepe lopes", "12345678", "12345678")));
         verify(console).printLine("Enter a username");
         verify(console).printLine("Enter your full name");
         verify(console).printLine("Enter your password");

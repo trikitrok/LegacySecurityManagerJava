@@ -1,3 +1,5 @@
+package user_creation;
+
 public class UserData {
     private final String username;
     private final String fullName;

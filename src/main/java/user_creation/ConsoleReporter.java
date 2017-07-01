@@ -1,3 +1,5 @@
+package user_creation;
+
 public class ConsoleReporter implements Reporter {
     private Console console;
 

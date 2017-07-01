@@ -1,4 +1,6 @@
-class ConsoleUserDataRetrieval implements UserDataRetrieval {
+package user_creation;
+
+public class ConsoleUserDataRetrieval implements UserDataRetrieval {
     private final Console console;
 
     public ConsoleUserDataRetrieval(Console console) {

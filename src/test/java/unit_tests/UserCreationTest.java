@@ -1,5 +1,8 @@
+package unit_tests;
+
 import org.junit.Before;
 import org.junit.Test;
+import user_creation.*;
 
 import static org.mockito.Mockito.*;
 

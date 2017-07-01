@@ -1,5 +1,11 @@
+package unit_tests;
+
 import org.junit.Before;
 import org.junit.Test;
+import user_creation.Console;
+import user_creation.ConsoleReporter;
+import user_creation.Reporter;
+import user_creation.UserData;
 
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
