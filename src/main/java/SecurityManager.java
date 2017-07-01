@@ -1,6 +1,6 @@
 public class SecurityManager {
     public static void createUser() {
-        UserCreator.createUser();
+        new UserCreator().createUser();
     }
 
 }
