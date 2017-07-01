@@ -1,74 +1,60 @@
+import org.junit.Before;
 import org.junit.Test;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 
 public class UserCreationThroughConsoleTest {
 
+    private UserDataRetrieval userDataRetrieval;
+    private Reporter reporter;
+    private UserCreator userCreator;
+
+    @Before
+    public void setUp() throws Exception {
+        userDataRetrieval = mock(UserDataRetrieval.class);
+        reporter = mock(Reporter.class);
+        userCreator = new UserCreator(userDataRetrieval, reporter, new ReverseEncryption());
+    }
+
     @Test
     public void creating_user_with_valid_password() {
-        FakeConsole console = new FakeConsole(
-            "pepe", "pepe lopes", "12345678", "12345678"
-        );
-        UserDataRetrieval userDataRetrieval = mock(UserDataRetrieval.class);
-        UserCreator userCreator = new UserCreator(
-            userDataRetrieval,
-            new ConsoleReporter(console),
-            new ReverseEncryption());
+        String password = "12345678";
+        String encryptedPassword = "87654321";
+        UserData userData = new UserData("pepe", "pepe lopes", password, password);
         when(userDataRetrieval.invoke()).thenReturn(
-            new UserData("pepe", "pepe lopes", "12345678", "12345678")
+            userData
         );
 
         userCreator.createUser();
 
-        assertThat(
-            console.lastPrintedLine(),
-            is("Saving Details for User (pepe, pepe lopes, 87654321)\n"));
+        verify(reporter).reportSuccessCreatingUser(userData, encryptedPassword);
     }
 
     @Test
     public void creating_user_using_a_password_that_is_to_short() {
-        FakeConsole console = new FakeConsole(
-            "pepe", "pepe lopes", "1234567", "1234567"
-        );
-        UserDataRetrieval userDataRetrieval = mock(UserDataRetrieval.class);
-        UserCreator userCreator = new UserCreator(
-            userDataRetrieval,
-            new ConsoleReporter(console),
-            new ReverseEncryption());
         when(userDataRetrieval.invoke()).thenReturn(
             new UserData("pepe", "pepe lopes", "1234567", "1234567")
         );
 
         userCreator.createUser();
 
-        assertThat(
-            console.lastPrintedLine(),
-            is("Password must be at least 8 characters in length"));
+        verify(reporter).reportError("Password must be at least 8 characters in length");
     }
 
     @Test
     public void creating_user_using_passwords_that_do_not_match() {
-        FakeConsole console = new FakeConsole(
-            "pepe", "pepe lopes", "1234567", "xkofjsofis"
-        );
-        UserDataRetrieval userDataRetrieval = mock(UserDataRetrieval.class);
-        UserCreator userCreator = new UserCreator(
-            userDataRetrieval,
-            new ConsoleReporter(console),
-            new ReverseEncryption());
         when(userDataRetrieval.invoke()).thenReturn(
             new UserData("pepe", "pepe lopes", "1234567", "xkofjsofis")
         );
 
         userCreator.createUser();
 
-        assertThat(
-            console.lastPrintedLine(),
-            is("The passwords don't match"));
+        verify(reporter).reportError("The passwords don't match");
     }
 
 }
