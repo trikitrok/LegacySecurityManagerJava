@@ -3,7 +3,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 
 class UserCreator {
-    public static void invoke() {
+    public static void createUser() {
         BufferedReader buffer = new BufferedReader(new InputStreamReader(System.in));
 
         String username = null;
