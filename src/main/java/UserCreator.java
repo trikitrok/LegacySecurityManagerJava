@@ -1,5 +1,5 @@
 class UserCreator {
-    private static final int MINIMUM_PASSWORD_LEGTH = 8;
+    private static final int MINIMUM_PASSWORD_LENGTH = 8;
     private Console console;
     private ConsoleUserDataRetrieval consoleUserDataRetrieval;
 
@@ -16,7 +16,7 @@ class UserCreator {
             return;
         }
 
-        if (userData.passwordLength() < MINIMUM_PASSWORD_LEGTH) {
+        if (userData.passwordLength() < MINIMUM_PASSWORD_LENGTH) {
             console.printLine("Password must be at least 8 characters in length");
             return;
         }
