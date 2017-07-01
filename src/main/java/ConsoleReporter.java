@@ -13,4 +13,9 @@ public class ConsoleReporter implements Reporter {
                 userData.fullName(),
                 encryptedPassword));
     }
+
+    @Override
+    public void reportError(String description) {
+        console.printLine(description);
+    }
 }
