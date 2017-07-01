@@ -28,18 +28,18 @@ class UserCreator {
             return;
         }
 
-        if (password.length() < MINIMUM_PASSWORD_LEGTH) {
+        if (userData.passwordLength() < MINIMUM_PASSWORD_LEGTH) {
             print("Password must be at least 8 characters in length");
             return;
         }
 
         // Encrypt the password (just reverse it, should be secure)
-        String encryptedPassword = new StringBuilder(password).reverse().toString();
+        String encryptedPassword = new StringBuilder(userData.password()).reverse().toString();
 
         print(String.format(
             "Saving Details for User (%s, %s, %s)\n",
-            username,
-            fullName,
+            userData.username(),
+            userData.fullName(),
             encryptedPassword));
     }
 

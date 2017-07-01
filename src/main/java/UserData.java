@@ -14,4 +14,20 @@ public class UserData {
     public boolean passwordsMatch() {
         return password.equals(confirmPassword);
     }
+
+    public int passwordLength() {
+        return password.length();
+    }
+
+    public String password() {
+        return password;
+    }
+
+    public String fullName() {
+        return fullName;
+    }
+
+    public String username() {
+        return username;
+    }
 }
