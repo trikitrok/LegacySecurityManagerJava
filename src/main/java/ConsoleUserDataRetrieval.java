@@ -1,4 +1,4 @@
-class ConsoleUserDataRetrieval {
+class ConsoleUserDataRetrieval implements UserDataRetrieval {
     private final Console console;
 
     public ConsoleUserDataRetrieval(Console console) {

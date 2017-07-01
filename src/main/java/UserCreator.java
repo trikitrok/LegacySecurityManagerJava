@@ -1,15 +1,19 @@
 class UserCreator {
     private static final int MINIMUM_PASSWORD_LENGTH = 8;
     private Console console;
-    private ConsoleUserDataRetrieval consoleUserDataRetrieval;
+    private UserDataRetrieval userDataRetrieval;
 
     public UserCreator(Console console) {
+        this(console, new ConsoleUserDataRetrieval(console));
+    }
+
+    public UserCreator(Console console, UserDataRetrieval userDataRetrieval) {
         this.console = console;
-        this.consoleUserDataRetrieval = new ConsoleUserDataRetrieval(console);
+        this.userDataRetrieval = userDataRetrieval;
     }
 
     public void createUser() {
-        UserData userData = consoleUserDataRetrieval.invoke();
+        UserData userData = userDataRetrieval.invoke();
 
         if (!userData.passwordsMatch()) {
             console.printLine("The passwords don't match");

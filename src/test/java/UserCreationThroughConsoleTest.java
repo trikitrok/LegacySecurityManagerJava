@@ -6,6 +6,8 @@ import java.util.List;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 
 public class UserCreationThroughConsoleTest {
@@ -15,7 +17,11 @@ public class UserCreationThroughConsoleTest {
         FakeConsole console = new FakeConsole(
             "pepe", "pepe lopes", "12345678", "12345678"
         );
-        UserCreator userCreator = new UserCreator(console);
+        UserDataRetrieval userDataRetrieval = mock(UserDataRetrieval.class);
+        UserCreator userCreator = new UserCreator(console, userDataRetrieval);
+        when(userDataRetrieval.invoke()).thenReturn(
+            new UserData("pepe", "pepe lopes", "12345678", "12345678")
+        );
 
         userCreator.createUser();
 
@@ -29,7 +35,11 @@ public class UserCreationThroughConsoleTest {
         FakeConsole console = new FakeConsole(
             "pepe", "pepe lopes", "1234567", "1234567"
         );
-        UserCreator userCreator = new UserCreator(console);
+        UserDataRetrieval userDataRetrieval = mock(UserDataRetrieval.class);
+        UserCreator userCreator = new UserCreator(console, userDataRetrieval);
+        when(userDataRetrieval.invoke()).thenReturn(
+            new UserData("pepe", "pepe lopes", "1234567", "1234567")
+        );
 
         userCreator.createUser();
 
@@ -43,7 +53,11 @@ public class UserCreationThroughConsoleTest {
         FakeConsole console = new FakeConsole(
             "pepe", "pepe lopes", "1234567", "xkofjsofis"
         );
-        UserCreator userCreator = new UserCreator(console);
+        UserDataRetrieval userDataRetrieval = mock(UserDataRetrieval.class);
+        UserCreator userCreator = new UserCreator(console, userDataRetrieval);
+        when(userDataRetrieval.invoke()).thenReturn(
+            new UserData("pepe", "pepe lopes", "1234567", "xkofjsofis")
+        );
 
         userCreator.createUser();
 
