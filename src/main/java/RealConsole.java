@@ -2,7 +2,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-class RealConsole {
+class RealConsole implements Console {
     public String readLine() {
         try {
             BufferedReader buffer = new BufferedReader(new InputStreamReader(System.in));

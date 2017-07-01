@@ -1,4 +1,14 @@
 class UserCreator {
+    private Console console;
+
+    public UserCreator() {
+
+    }
+
+    public UserCreator(Console console) {
+        this.console = console;
+    }
+
     public void createUser() {
         String username = null;
         String fullName = null;
@@ -35,11 +45,11 @@ class UserCreator {
     }
 
     protected String readLine() {
-        return new RealConsole().readLine();
+        return console.readLine();
     }
 
     protected void print(String line) {
-        new RealConsole().printLine(line);
+        console.printLine(line);
     }
 
 }

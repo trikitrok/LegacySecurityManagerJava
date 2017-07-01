@@ -7,18 +7,20 @@ import java.util.List;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 
+
 public class UserCreationThroughConsoleTest {
 
     @Test
     public void creating_user_with_valid_password() {
-        FakeUserCreator userCreator = new FakeUserCreator(
+        FakeConsole console = new FakeConsole(
             "pepe", "pepe lopes", "12345678", "12345678"
         );
+        UserCreator userCreator = new UserCreator(console);
 
         userCreator.createUser();
 
         assertThat(
-            userCreator.lastPrintedLine(),
+            console.lastPrintedLine(),
             is("Saving Details for User (pepe, pepe lopes, 87654321)\n"));
     }
 
@@ -66,6 +68,32 @@ public class UserCreationThroughConsoleTest {
         }
 
         protected void print(String line) {
+            printedLines.add(line);
+        }
+
+        public String lastPrintedLine() {
+            return printedLines.get(printedLines.size() - 1);
+        }
+    }
+
+    private class FakeConsole implements Console {
+        private final List<String> userInputs;
+        private int linesReadNumber;
+        private List<String> printedLines;
+
+        public FakeConsole(String ... userInputs) {
+            printedLines = new ArrayList<>();
+            this.userInputs = Arrays.asList(userInputs);
+            linesReadNumber = 0;
+        }
+
+        public String readLine()  {
+            String line = userInputs.get(linesReadNumber);
+            linesReadNumber++;
+            return line;
+        }
+
+        public void printLine(String line) {
             printedLines.add(line);
         }
 
