@@ -26,14 +26,15 @@ public class UserCreationThroughConsoleTest {
 
     @Test
     public void creating_user_using_a_password_that_is_to_short() {
-        FakeUserCreator userCreator = new FakeUserCreator(
+        FakeConsole console = new FakeConsole(
             "pepe", "pepe lopes", "1234567", "1234567"
         );
+        UserCreator userCreator = new UserCreator(console);
 
         userCreator.createUser();
 
         assertThat(
-            userCreator.lastPrintedLine(),
+            console.lastPrintedLine(),
             is("Password must be at least 8 characters in length"));
     }
 
